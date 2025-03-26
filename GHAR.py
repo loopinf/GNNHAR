@@ -37,7 +37,7 @@ os.makedirs(model_save_path, exist_ok=True)
 
 
 def load_feature_data(universe):
-    feature_df = pd.read_csv(join(path, 'Data', f'{universe}_var_FH1.csv'), index_col=0)
+    feature_df = pd.read_pickle(f'crypto_X_h1.pkl')
     feature_df.fillna(method="ffill", inplace=True)
     feature_df = feature_df[feature_df.index <= '2021-07-01']
     feature_df = feature_df.sort_index(axis=1)
@@ -45,7 +45,7 @@ def load_feature_data(universe):
 
 
 def load_data(universe, horizon):
-    var_df = pd.read_csv(join(path, 'Data', f'{universe}_var_FH{horizon}.csv'), index_col=0)
+    var_df = pd.read_pickle(f'crypto_y_h{horizon}.pkl')
     var_df.fillna(method="ffill", inplace=True)
     vech_df = var_df[var_df.index <= '2021-07-01']
     vech_df = vech_df.sort_index(axis=1)
@@ -53,7 +53,7 @@ def load_data(universe, horizon):
 
 
 def load_ret(universe):
-    ret_df = pd.read_csv(join(path, 'Data', f'{universe}_ret_FH1.csv'), index_col=0)
+    ret_df = pd.read_pickle(f'crypto_X_h1.pkl')
     ret_df.fillna(method="ffill", inplace=True)
     ret_df = ret_df[ret_df.index <= '2021-07-01']
     ret_df = ret_df.sort_index(axis=1)
